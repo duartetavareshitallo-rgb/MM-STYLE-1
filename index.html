@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamer Booster Pro & Optimizer</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #22c55e;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #38bdf8;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #7dd3fc;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    select, input[type="range"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: var(--text);
+      box-sizing: border-box;
+    }
+
+    .toggle-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #334155;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    .btn {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .console {
+      background: #020617;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #4ade80;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Gamer Booster & Screen Stretcher</h1>
+
+  <!-- Seleção de Aplicativos -->
+  <div class="card">
+    <h2>1. Selecionar Jogo/Aplicativo</h2>
+    <div class="form-group">
+      <label for="appSelect">Aplicativos Instalados:</label>
+      <select id="appSelect">
+        <option value="freefire">Free Fire</option>
+        <option value="pubg">PUBG Mobile</option>
+        <option value="cod">Call of Duty Mobile</option>
+        <option value="system_services">Serviços do Sistema</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Ajuste de Tela e Zoom -->
+  <div class="card">
+    <h2>2. Configurações de Tela Esticada & Zoom</h2>
+    <div class="toggle-group">
+      <span>Ativar Tela Esticada</span>
+      <label class="switch">
+        <input type="checkbox" id="stretchToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="zoomRange">Nível de Zoom/Proporção (%):</label>
+      <input type="range" id="zoomRange" min="50" max="150" value="100" oninput="updateZoomLabel(this.value)">
+      <span id="zoomValue">100%</span>
+    </div>
+    <div class="form-group">
+      <label for="profileSelect">Perfil de Resolução:</label>
+      <select id="profileSelect">
+        <option value="default">Padrão do Dispositivo</option>
+        <option value="iphone14">Modo iPhone 14 Pro</option>
+        <option value="ipad">Modo iPad (Proporção 4:3)</option>
+        <option value="pc">Modo Monitor PC (16:9 Esticada)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Desempenho e RAM -->
+  <div class="card">
+    <h2>3. Otimização de Desempenho & RAM</h2>
+    <div class="form-group">
+      <label for="ramSelect">Aumento Virtual de RAM:</label>
+      <select id="ramSelect">
+        <option value="off">Desativado</option>
+        <option value="8000gb">+ 8 GB RAM</option>
+        <option value="16000gb">+ 16 GB RAM</option>
+        <option value="20000mb">+ 20.000 MB RAM</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="fpsSelect">Taxa de Quadros (FPS):</label>
+      <select id="fpsSelect">
+        <option value="6000000000">600000000000 FPS</option>
+        <option value="90000000000">90000000000 FPS</option>
+        <option value="12000000000">12000000000 FPS</option>
+        <option value="max">Desbloquear Máximo (IA)</option>
+      </select>
+    </div>
+    <div class="toggle-group">
+      <span>Modo Turbo IA</span>
+      <label class="switch">
+        <input type="checkbox" id="iaTurboToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-group">
+      <span>Resfriamento de CPU/GPU</span>
+      <label class="switch">
+        <input type="checkbox" id="coolingToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Gráficos e Sensibilidade -->
+  <div class="card">
+    <h2>4. Gráficos & Sensibilidade</h2>
+    <div class="form-group">
+      <label for="graphicsSelect">Qualidade Gráfica:</label>
+      <select id="graphicsSelect">
+        <option value="low">Muito Baixa (Foco em Desempenho)</option>
+        <option value="medium">Média</option>
+        <option value="high">Alta</option>
+        <option value="ultra">Ultra (iPhone Profile)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sensiRange">Ajuste de Sensibilidade Multiplicador:</label>
+      <input type="range" id="sensiRange" min="1" max="10" value="5" oninput="updateSensiLabel(this.value)">
+      <span id="sensiValue">5x</span>
+    </div>
+  </div>
+
+  <!-- Comandos de Ativação e Teste -->
+  <div class="card">
+    <h2>5. Executar & Testar</h2>
+    <button class="btn" style="margin-bottom: 10px;" onclick="startPreview()">Testar Aplicação por 30 Segundos</button>
+    <button class="btn" onclick="applySettings()">Aplicar Comandos de Ativação</button>
+  </div>
+
+  <!-- Console de Logs -->
+  <div class="card">
+    <h2>Console de Execução</h2>
+    <div class="console" id="consoleLog">> Sistema pronto...</div>
+  </div>
+</div>
+
+<script>
+  function updateZoomLabel(val) {
+    document.getElementById('zoomValue').innerText = val + '%';
+  }
+
+  function updateSensiLabel(val) {
+    document.getElementById('sensiValue').innerText = val + 'x';
+  }
+
+  function log(message) {
+    const consoleElem = document.getElementById('consoleLog');
+    consoleElem.innerHTML += '<br>> ' + message;
+    consoleElem.scrollTop = consoleElem.scrollHeight;
+  }
+
+  function applySettings() {
+    const app = document.getElementById('appSelect').value;
+    const stretch = document.getElementById('stretchToggle').checked;
+    const zoom = document.getElementById('zoomRange').value;
+    const ram = document.getElementById('ramSelect').value;
+    const fps = document.getElementById('fpsSelect').value;
+    const profile = document.getElementById('profileSelect').value;
+
+    log(`Executando comandos para: ${app.toUpperCase()}`);
+    log(`Comando: set_screen_stretch=${stretch} (Zoom: ${zoom}%)`);
+    log(`Comando: set_profile=${profile}`);
+    log(`Comando: allocate_ram=${ram}`);
+    log(`Comando: set_fps_target=${fps}`);
+    log(`Configurações aplicadas com sucesso!`);
+  }
+
+  function startPreview() {
+    log('Iniciando modo de teste de 30 segundos...');
+    applySettings();
+    
+    let timeLeft = 30;
+    const interval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft > 0) {
+        log(`Teste em andamento... Restam ${timeLeft} segundos.`);
+      } else {
+        clearInterval(interval);
+        log('Teste de 30 segundos concluído. Restaurando padrões...');
+      }
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>// Monitora cliques em caixas de seleção
+document.querySelectorAll('.config-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', (event) => {
+        const opcaoId = event.target.id;
+        const estaAtivo = event.target.checked;
+
+        if (estaAtivo) {
+            console.log(`Configuração [${opcaoId}] foi ATIVADA.`);
+            // Execute o código específico da configuração ativada aqui
+            executarConfiguracao(opcaoId);
+        } else {
+            console.log(`Configuração [${opcaoId}] foi DESATIVADA.`);
+            // Opcional: código para reverter a configuração
+        }
+    });
+});
+
+// Central de funções para cada configuração
+function executarConfiguracao(id) {
+    switch(id) {
+        case 'modo-noturno':
+            document.body.classList.add('dark-mode');
+            break;
+        case 'notificacoes':
+            alert('Notificações ativadas com sucesso!');
+            break;
+        case 'salvamento-automatico':
+            iniciarSalvamentoAutomatico();
+            break;
+    }
+}
+const menuOpcoes = document.getElementById('meu-seletor-config');
+
+menuOpcoes.addEventListener('change', (event) => {
+    const opcaoSelecionada = event.target.value;
+    console.log(`Opção alterada para: ${opcaoSelecionada}`);
+    
+    // Executa o código correspondente à opção escolhida
+    if (opcaoSelecionada === 'opcao1') {
+        // Código para a opção 1
+    } else if (opcaoSelecionada === 'opcao2') {
+        // Código para a opção 2
+    }
+});
+
